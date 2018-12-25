@@ -8,56 +8,53 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Codes States</h1>
+    <h1>Code States 수강신청</h1>
 
-    <div id="grid">
-        <div id="menu">
-            <div class="course">
-                <div id="pre">PRE Course</div>
-                <div id="prePrice">3000</div>
-            </div>
-
-            <div class="course">
-                <div>IMMERSIVE Course</div>
-                <div>60000</div>
-            </div>
-
-            <div class="course">
-                <div>FLEX IMMERSIVE Course</div>
-                <div>50000</div>
-            </div>
-
-            <div class="course">
-                <div>DATA SCIENCE Course</div>
-                <div>40000</div>
-            </div>
-        </div>
-
-
-        <div id="cart">
-            <div>
-                <span>Course</span>
-                <span>인원</span>
-                <span>가격</span>
-            </div>
-                
-            <div>
-                <div>
-                    <span>결제하실 금액</span>
-                    <span id="total_price"></span>
-                </div>
-                
-                <div>
-                    <span>결제</span>
-                    <span>취소</span>
-                </div>
-            </div>
-        
-        </div>
-
+    <!-- course와 cart처럼 data에 따라 변하는 값들은 id를 가진 div만 만들어놓고 JS로 appendChild하는 방식으로 자식요소 생성 -->
+    <div id="course">
+        <!-- 
+        <button>PRE<br>3000</button>
+        <button>IMMERSIVE<br>50000</button>
+        <button>FLEX IMMERSIVE<br>40000</button>
+        <button>DATA SCIENCE<br>45000</button>
+        -->
     </div>
 
+    <ul id="cart">
+        <!-- 
+        <li>
+            <span class= "name">PRE</span>
+            <span class= "quantity">2</span>
+            <span class= "price">6000</span>
+        </li>
 
+        <li>
+            <span class= "name">IMMERSIVE</span>
+            <span class= "quantity">1</span>
+            <span class= "price">50000</span>
+        </li>
+
+        <li>
+            <span class= "name">FLEX IMMERSIVE</span>
+            <span class= "quantity">1</span>
+            <span class= "price">40000</span>
+        </li>
+
+        <li>
+            <span class= "name">DATA SCIENCE</span>
+            <span class= "quantity">3</span>
+            <span class= "price">135000</span>
+        </li>
+         -->
+    </ul>
+
+
+    <!-- 고정되있는 값들은 해당 id가진 div아래 바로 자식요소(이경우는 span) 넣어줌 -->
+    <div id="subtotal">
+        결제 하실 금액 <span>0</span>원
+    </div>
+        
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

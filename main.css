@@ -1,24 +1,79 @@
 * {
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: block;
     text-align: center;
-    margin : 0;
+    font-size: 45px;
+  }
+
+  button {
+    float: left;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    margin-top: 115px;
+    border-radius: 20px;
+    border: 2px solid grey;
+
+    font-size: 1em;
+    font-weight: bold;
+  }
+  
+  #subtotal {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 600px;
+    height: 150px;
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(45, 135, 151);
+    color: white;
+  
+    font-size: 2em;
+  }
+  
+  #cart {
+    position: absolute;
+    right: 0;
+    top: 120px;
+    bottom: 0;
+    width: 600px;
+    border: 1px solid #ccc;
+    margin: 0;
     padding: 0;
-    border: 1px solid black;
-}
-
-#grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
-
-h1 {
-    font-size: 70px;
-}
-
-.course {
-    width: 250px;
-    height: 250px;
-    margin: 20px;
+    background-color: rgb(169, 249, 255);
+  }
+  
+  #cart li {
+    font-size: 1.5em;
+    list-style: none;
+    padding: 10px 40px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  #cart span {
     display: inline-block;
-}
+  }
+  
+  #cart .name {
+    width: 200px;
+  }
+  
+  #cart .quantity {
+    width: 100px;
+  }
+  
+  #cart .price {
+    width: 150px;
+  }
 
 
