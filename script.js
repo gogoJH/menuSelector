@@ -1,4 +1,4 @@
-// 코스메뉴 버튼 만들기
+// course button 만들기
 //button>PRE<br>3000</button>
 function createCourseElement(course) {
     var button = document.createElement('BUTTON');
@@ -7,13 +7,13 @@ function createCourseElement(course) {
 }
 
 
-//cart list element만들기
+//cart element만들기
 /* <li>
     <span class= "name">PRE</span>
     <span class= "quantity">2</span>
     <span class= "price">6000</span>
 </li> */
-function createCartElement(item) {
+function createCartElement(item) { //item은 obj형식
     var li = document.createElement('LI');
 
     var spanName = document.createElement('SPAN');
@@ -34,23 +34,27 @@ function createCartElement(item) {
 }
 
 
-//course button의 innerHTML 넣어주기
+//course btn에 innerHTML넣고 <div id="course">에 child로 달아주기
+//course btn 클릭시 renderCartHTML을 호출
 function renderCourseHTML() {
     var elCourse = document.querySelector('#course'); //<div id="course">에 appendChild해주기 위함
 
     for (let i = 0; i < course.length; i++) { 
         var courseButton = createCourseElement(course[i]); //courseName과 price가 들어간 course button완성
 
-        courseButton.onclick = function addToCart() { //course btn클릭시 addToCart라는 event설정
-            cart.push(course[i].id); //data.js의 빈 cart arr에 클릭한 course의 id값 담아주기
+        courseButton.onclick = function addToCart() { //course btn클릭시 addToCart()라는 event설정
+            cart.push(course[i].id); //data.js의 cart라는 빈 arr에 클릭한 course의 id값 push
 
-            renderCartHTML(); //자료구조를 id: quantity형식의 obj로 변경
+            renderCartHTML(); //click시 cart에 데이터를 render해줌
         }
         elCourse.appendChild(courseButton);
     }
 }
 
 
+//createCartElement의 인자로 넘겨줄 obj를 자료구조 변경을 통해 만들고
+//createCartElement(item)의 값인 <li>들을 <ul id="cart">에 appendChild
+//renderSubtotal을 호출하여 total값이 변하게 해줌
 function renderCartHTML() {
     var elCart = document.querySelector('#cart');
     elCart.innerHTML = '';
@@ -62,17 +66,17 @@ function renderCartHTML() {
         if(acc[item]) {
             acc[item] = acc[item] + 1;
         } else {
-            acc[item] = 1; //init을 {}로 주고 arr안의 elems를 acc라 했을때 acc를 obj의 key로 준다
+            acc[item] = 1; //init을 {}로 주고 item을 acc(obj)의 key로 준다
         }
-        return acc; //{ Pre: 1, DataScience: 2}
+        return acc; //e.f { Pre: 1, DataScience: 2}
     }, {});
 
 
     // 아래 자료 구조를 변경
     // { Pre: 1, Immersive: 2}
     // [{name:'PRE', quantity:1, price:3000}, {name:'IMMERSIVE', quantity:2, price:100000}]
-    var cartElementArr = []; //total값 표시 + ceateCartElement(cartElementArr내 각요소들(= obj형식)) 하기 위함
-    for (var id in quantityObj) { //
+    var cartElementArr = []; //total값 표시 + ceateCartElement의 인자로 cartElementArr내 각요소들(= obj형식)을 주기위함
+    for (var id in quantityObj) { //var quantityObj = { Pre: 1, Immersive: 2}
         let course = getCourseById(id); //let course = { id: 'Pre', name: 'PRE', price: 3000 }
         cartElementArr.push({
             name: course.name,
@@ -81,18 +85,18 @@ function renderCartHTML() {
         });
     }
 
-    renderSubtotalHTML(cartElementArr);
-
     //var cartElementArr = [{name:'PRE', quantity:1, price:3000}, {name:'IMMERSIVE', quantity:2, price:100000}]
     cartElementArr.forEach(function(item) { //item = {name:'PRE', quantity:1, price:3000}
-        var elItem = createCartElement(item); 
+        var elList = createCartElement(item); 
         // <li>
         //     <span class= "name">PRE</span>
         //     <span class= "quantity">1</span>
         //     <span class= "price">3000</span>
         // </li> 
-        elCart.appendChild(elItem); //var elCart = <li id="cart"> </li>
+        elCart.appendChild(elList); //var elCart = <li id="cart"> </li>
     });
+
+    renderSubtotalHTML(cartElementArr); //click event시 total도 바뀌어야하므로
 }
 
 
